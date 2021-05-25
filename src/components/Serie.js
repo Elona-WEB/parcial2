@@ -2,8 +2,10 @@ import React from "react";
 import { FormattedDate } from "react-intl";
 
 const Serie = (props) => {
-  console.log(props.serie.release);
-  let date = new Date(props.serie.release);
+  var date = props.serie.release;
+  var datearray = date.split("/");
+
+  var newdate = datearray[1] + "/" + datearray[0] + "/" + datearray[2];
   return (
     <tr>
       <th scope="row">{props.serie.id}</th>
@@ -13,7 +15,7 @@ const Serie = (props) => {
       <td>{props.serie.seasons}</td>
       <td>{props.serie.episodes}</td>
       <td>
-        <FormattedDate value={date} />
+        <FormattedDate value={new Date(newdate)} />
       </td>
     </tr>
   );
