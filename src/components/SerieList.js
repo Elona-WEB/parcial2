@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import Serie from "./Serie";
+import Detail from "./Detail";
 
 const SerieList = (props) => {
   const [series, setSeries] = useState([]);
+  const [detail, setDetail] = useState(false);
+  const [values, setValues] = useState([]);
   const locale = props.lan;
 
   useEffect(() => {
@@ -22,35 +25,49 @@ const SerieList = (props) => {
       });
   }, []);
 
+  const handleCallback = (e) => {
+    setValues(e);
+    setDetail(true);
+  };
+
   return (
-    <div>
-      <table className="table table-striped">
-        <thead className="thead">
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">
-              <FormattedMessage id="Name" />
-            </th>
-            <th scope="col">
-              <FormattedMessage id="Channel" />
-            </th>
-            <th scope="col">
-              <FormattedMessage id="Seasons" />
-            </th>
-            <th scope="col">
-              <FormattedMessage id="Episodes" />
-            </th>
-            <th scope="col">
-              <FormattedMessage id="RD" />
-            </th>
-          </tr>
-        </thead>
-        <tbody>
-          {series.map((e, i) => (
-            <Serie key={i} serie={e} />
-          ))}
-        </tbody>
-      </table>
+    <div className="container">
+      <div className="row">
+        <div className="col">
+          <table className="table table-striped">
+            <thead className="thead">
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">
+                  <FormattedMessage id="Name" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="Channel" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="Seasons" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="Episodes" />
+                </th>
+                <th scope="col">
+                  <FormattedMessage id="RD" />
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {series.map((e, i) => (
+                <Serie key={i} serie={e} parentCallback={handleCallback} />
+              ))}
+            </tbody>
+          </table>
+        </div>
+        {detail && (
+          <div className="col">
+            <Detail info={values} />
+          </div>
+        )}
+      </div>
     </div>
   );
 };
