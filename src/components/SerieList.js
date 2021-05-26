@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FormattedMessage } from "react-intl";
 import Serie from "./Serie";
 import Detail from "./Detail";
+import Graphic from "./Graphic";
 
 const SerieList = (props) => {
   const [series, setSeries] = useState([]);
@@ -84,6 +85,9 @@ const SerieList = (props) => {
             <Detail info={values} online={img} />
           </div>
         )}
+      </div>
+      <div>
+        <Graphic />
       </div>
     </div>
   );
