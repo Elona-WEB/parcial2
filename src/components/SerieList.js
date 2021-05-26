@@ -92,6 +92,11 @@ const SerieList = (props) => {
           <h2>
             <FormattedMessage id="Graphic" />
           </h2>
+          {!online && (
+            <h6>
+              <FormattedMessage id="GM" />
+            </h6>
+          )}
           {online && <Graphic data={series} online={online} />}
         </section>
       </div>
