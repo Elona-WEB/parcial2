@@ -87,7 +87,13 @@ const SerieList = (props) => {
         )}
       </div>
       <div>
-        <Graphic />
+        <section className="text-center">
+          <hr />
+          <h2>
+            <FormattedMessage id="Graphic" />
+          </h2>
+          {online && <Graphic data={series} online={online} />}
+        </section>
       </div>
     </div>
   );
