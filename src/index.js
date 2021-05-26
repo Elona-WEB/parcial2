@@ -5,6 +5,7 @@ import { IntlProvider } from "react-intl";
 import localeESMessages from "./locales/es.json";
 import localeENMessages from "./locales/en.json";
 import SerieList from "./components/SerieList";
+import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 
 const lan = window.navigator.language || navigator.browserLanguage;
 
@@ -17,6 +18,8 @@ ReactDOM.render(
   </IntlProvider>,
   document.getElementById("root")
 );
+
+serviceWorkerRegistration.register();
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

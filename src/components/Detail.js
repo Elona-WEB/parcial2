@@ -1,9 +1,22 @@
+import React, { useState, useEffect } from "react";
+
 const Detail = (props) => {
-  console.log("PROPS DETAIL");
-  console.log(props);
+  const [alt, setAlt] = useState("");
+  const [src, setSrc] = useState("");
+
+  useEffect(() => {
+    if (props.online === false) {
+      setAlt("Error while loading img");
+      setSrc("");
+    } else {
+      setAlt("Poster of ", props.info.name);
+      setSrc(props.info.poster);
+    }
+  }, [props.online, props.info.poster]);
+
   return (
     <div className="card">
-      <img className="card-img-top" src={props.info.poster} alt="Poster" />
+      <img className="card-img-top" src={src} alt={alt} />
       <div className="card-body">
         <h5 className="card-title">{props.info.name}</h5>
         <h6 className="card-subtitle mb-2 text-muted">
