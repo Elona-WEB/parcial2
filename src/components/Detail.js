@@ -9,10 +9,10 @@ const Detail = (props) => {
       setAlt("Error while loading img");
       setSrc("");
     } else {
-      setAlt("Poster of ", props.info.name);
+      setAlt("Poster of " + props.info.name);
       setSrc(props.info.poster);
     }
-  }, [props.online, props.info.poster]);
+  }, [props.online, props.info.poster, props.info.name]);
 
   return (
     <div className="card">
